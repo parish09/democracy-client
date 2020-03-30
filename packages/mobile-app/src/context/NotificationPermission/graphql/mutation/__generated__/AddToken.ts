@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -7,12 +8,12 @@
 // ====================================================
 
 export interface AddToken_addToken {
-  __typename: "TokenResult";
+  __typename: 'TokenResult';
   succeeded: boolean | null;
 }
 
 export interface AddToken {
-  addToken: AddToken_addToken | null;
+  addToken: AddToken_addToken;
 }
 
 export interface AddTokenVariables {

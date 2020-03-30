@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import {
@@ -25,42 +26,42 @@ export interface Procedure_procedure_communityVotes_constituencies {
   abstination: number;
   no: number;
   constituency: string;
-  total: number | null;
+  total: number;
 }
 
 export interface Procedure_procedure_communityVotes {
   __typename: 'CommunityVotes';
-  yes: number | null;
-  abstination: number | null;
-  no: number | null;
-  total: number | null;
+  yes: number;
+  abstination: number;
+  no: number;
+  total: number;
   constituencies: Procedure_procedure_communityVotes_constituencies[];
 }
 
 export interface Procedure_procedure_voteResults_partyVotes_deviants {
   __typename: 'Deviants';
-  yes: number | null;
-  abstination: number | null;
-  no: number | null;
+  yes: number;
+  abstination: number;
+  no: number;
   notVoted: number | null;
 }
 
 export interface Procedure_procedure_voteResults_partyVotes {
   __typename: 'PartyVote';
-  main: VoteSelection | null;
+  main: VoteSelection;
   party: string;
   deviants: Procedure_procedure_voteResults_partyVotes_deviants;
 }
 
 export interface Procedure_procedure_voteResults {
   __typename: 'VoteResult';
-  yes: number | null;
-  abstination: number | null;
-  no: number | null;
+  yes: number;
+  abstination: number;
+  no: number;
   notVoted: number | null;
   decisionText: string | null;
-  namedVote: boolean | null;
-  governmentDecision: VoteSelection | null;
+  namedVote: boolean;
+  governmentDecision: VoteSelection;
   partyVotes: Procedure_procedure_voteResults_partyVotes[];
 }
 
@@ -70,14 +71,14 @@ export interface Procedure_procedure {
   procedureId: string;
   title: string;
   sessionTOPHeading: string | null;
-  tags: (string | null)[] | null;
+  tags: string[];
   abstract: string | null;
   voteDate: any | null;
   voteEnd: any | null;
   notify: boolean | null;
   list: ListType | null;
   type: string;
-  subjectGroups: string[] | null;
+  subjectGroups: string[];
   submissionDate: any | null;
   currentStatus: string | null;
   currentStatusHistory: string[];

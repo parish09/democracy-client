@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import {
@@ -19,18 +20,18 @@ export interface ProceduresList_procedures_activityIndex {
 
 export interface ProceduresList_procedures_voteResults {
   __typename: 'VoteResult';
-  yes: number | null;
-  abstination: number | null;
-  no: number | null;
-  governmentDecision: VoteSelection | null;
+  yes: number;
+  abstination: number;
+  no: number;
+  governmentDecision: VoteSelection;
 }
 
 export interface ProceduresList_procedures_communityVotes {
   __typename: 'CommunityVotes';
-  yes: number | null;
-  abstination: number | null;
-  no: number | null;
-  total: number | null;
+  yes: number;
+  abstination: number;
+  no: number;
+  total: number;
 }
 
 export interface ProceduresList_procedures {
@@ -39,7 +40,7 @@ export interface ProceduresList_procedures {
   title: string;
   procedureId: string;
   sessionTOPHeading: string | null;
-  subjectGroups: string[] | null;
+  subjectGroups: string[];
   voteDate: any | null;
   voteEnd: any | null;
   list: ListType | null;

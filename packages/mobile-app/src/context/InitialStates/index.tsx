@@ -35,11 +35,14 @@ export const InitialStateProvider: FC = ({ children }) => {
     data: meData,
     loading: verificationQueryRunning,
     refetch: refetchMe,
+    error,
   } = useQuery<Me>(ME);
   const [isVerified, setIsVerified] = useState<boolean>(false);
   const [lastStartVersion, setLastStartVersion] = useState<
     InitialStateInterface['lastStartWithVersion']
   >();
+
+  console.log('me error', error, meData);
 
   useEffect(() => {
     AsyncStorage.getItem('lastStartWithVersion').then(version =>

@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import { VoteSelection } from './../../../../../../../../../__generated__/globalTypes';
@@ -11,12 +12,12 @@ import { VoteSelection } from './../../../../../../../../../__generated__/global
 export interface PartyChartData_proceduresByIdHavingVoteResults_procedures_voteResults_partyVotes {
   __typename: 'PartyVote';
   party: string;
-  main: VoteSelection | null;
+  main: VoteSelection;
 }
 
 export interface PartyChartData_proceduresByIdHavingVoteResults_procedures_voteResults {
   __typename: 'VoteResult';
-  governmentDecision: VoteSelection | null;
+  governmentDecision: VoteSelection;
   partyVotes: PartyChartData_proceduresByIdHavingVoteResults_procedures_voteResults_partyVotes[];
 }
 

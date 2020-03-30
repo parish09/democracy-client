@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -7,7 +8,7 @@
 // ====================================================
 
 export interface ToggleNotification_toggleNotification {
-  __typename: "Procedure";
+  __typename: 'Procedure';
   notify: boolean | null;
 }
 

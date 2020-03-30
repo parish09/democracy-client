@@ -116,6 +116,8 @@ export const Code: React.FC<Props> = ({ route }) => {
         refetchQueries,
       });
 
+      console.log('requestVerification result', res.data);
+
       if (res.data && res.data.requestVerification.succeeded) {
         AsyncStorage.setItem('auth_phoneHash', phoneNumberHash);
         Keyboard.dismiss();

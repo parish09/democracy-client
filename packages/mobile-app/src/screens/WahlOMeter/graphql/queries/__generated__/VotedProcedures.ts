@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import { VoteSelection } from './../../../../../../__generated__/globalTypes';
@@ -11,25 +12,25 @@ import { VoteSelection } from './../../../../../../__generated__/globalTypes';
 export interface VotedProcedures_proceduresByIdHavingVoteResults_procedures_voteResults_partyVotes {
   __typename: 'PartyVote';
   party: string;
-  main: VoteSelection | null;
+  main: VoteSelection;
 }
 
 export interface VotedProcedures_proceduresByIdHavingVoteResults_procedures_voteResults {
   __typename: 'VoteResult';
-  governmentDecision: VoteSelection | null;
-  yes: number | null;
-  abstination: number | null;
-  no: number | null;
+  governmentDecision: VoteSelection;
+  yes: number;
+  abstination: number;
+  no: number;
   notVoted: number | null;
   partyVotes: VotedProcedures_proceduresByIdHavingVoteResults_procedures_voteResults_partyVotes[];
 }
 
 export interface VotedProcedures_proceduresByIdHavingVoteResults_procedures_communityVotes {
   __typename: 'CommunityVotes';
-  yes: number | null;
-  abstination: number | null;
-  no: number | null;
-  total: number | null;
+  yes: number;
+  abstination: number;
+  no: number;
+  total: number;
 }
 
 export interface VotedProcedures_proceduresByIdHavingVoteResults_procedures {
@@ -37,12 +38,12 @@ export interface VotedProcedures_proceduresByIdHavingVoteResults_procedures {
   _id: string;
   procedureId: string;
   title: string;
-  tags: (string | null)[] | null;
+  tags: string[];
   voteDate: any | null;
   votedGovernment: boolean | null;
   submissionDate: any | null;
   completed: boolean | null;
-  subjectGroups: string[] | null;
+  subjectGroups: string[];
   voted: boolean;
   type: string;
   voteResults: VotedProcedures_proceduresByIdHavingVoteResults_procedures_voteResults | null;

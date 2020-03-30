@@ -72,6 +72,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     captureException(graphQLErrors);
     graphQLErrors.forEach(({ message, locations, path }) => {
+      captureException({ message, locations, path });
       console.log(
         `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
           locations,
