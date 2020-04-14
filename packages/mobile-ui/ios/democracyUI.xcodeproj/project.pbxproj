@@ -18,8 +18,8 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* democracyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* democracyUITests.m */; };
 		9C1FC581A2357B659F4F3F05 /* libPods-democracyUI-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76508DB60FE85172961581E6 /* libPods-democracyUI-tvOS.a */; };
+		B10D7253E150575806E15902 /* libPods-democracyUI-democracyUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 453A457192E0F29971CCFC60 /* libPods-democracyUI-democracyUITests.a */; };
 		B4956DF8C2BC1CB6BE9EF7F3 /* libPods-democracyUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC388E69B1FBD6ED6F536892 /* libPods-democracyUI.a */; };
-		E9F4CD8BEF96E6ACE2ED7B24 /* libPods-democracyUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9313CC0016528E3C443A88CA /* libPods-democracyUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,11 +54,13 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = democracyUI/main.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* democracyUI-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "democracyUI-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* democracyUI-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "democracyUI-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D5FCB379F1BD6CAE761485A /* Pods-democracyUI-democracyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-democracyUI-democracyUITests.release.xcconfig"; path = "Target Support Files/Pods-democracyUI-democracyUITests/Pods-democracyUI-democracyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		453A457192E0F29971CCFC60 /* libPods-democracyUI-democracyUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-democracyUI-democracyUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B74BECFD9816A9A583A1AC /* Pods-democracyUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-democracyUI.debug.xcconfig"; path = "Target Support Files/Pods-democracyUI/Pods-democracyUI.debug.xcconfig"; sourceTree = "<group>"; };
 		6BCF4BF9961049FDEB36CC0A /* Pods-democracyUI-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-democracyUI-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-democracyUI-tvOSTests/Pods-democracyUI-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		76508DB60FE85172961581E6 /* libPods-democracyUI-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-democracyUI-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F67CDDF45EE056B0C83840 /* Pods-democracyUI-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-democracyUI-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-democracyUI-tvOS/Pods-democracyUI-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		9313CC0016528E3C443A88CA /* libPods-democracyUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-democracyUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7DFD4B44240E6C5B356DC70 /* Pods-democracyUI-democracyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-democracyUI-democracyUITests.debug.xcconfig"; path = "Target Support Files/Pods-democracyUI-democracyUITests/Pods-democracyUI-democracyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B8213ABE5C839EC17DF270EA /* Pods-democracyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-democracyUITests.debug.xcconfig"; path = "Target Support Files/Pods-democracyUITests/Pods-democracyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C6302D85D757CFAD818110BB /* Pods-democracyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-democracyUITests.release.xcconfig"; path = "Target Support Files/Pods-democracyUITests/Pods-democracyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DC388E69B1FBD6ED6F536892 /* libPods-democracyUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-democracyUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9F4CD8BEF96E6ACE2ED7B24 /* libPods-democracyUITests.a in Frameworks */,
+				B10D7253E150575806E15902 /* libPods-democracyUI-democracyUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +146,7 @@
 				DC388E69B1FBD6ED6F536892 /* libPods-democracyUI.a */,
 				76508DB60FE85172961581E6 /* libPods-democracyUI-tvOS.a */,
 				ED7BCB157C5A1A5E63339AB1 /* libPods-democracyUI-tvOSTests.a */,
-				9313CC0016528E3C443A88CA /* libPods-democracyUITests.a */,
+				453A457192E0F29971CCFC60 /* libPods-democracyUI-democracyUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -193,6 +195,8 @@
 				6BCF4BF9961049FDEB36CC0A /* Pods-democracyUI-tvOSTests.release.xcconfig */,
 				B8213ABE5C839EC17DF270EA /* Pods-democracyUITests.debug.xcconfig */,
 				C6302D85D757CFAD818110BB /* Pods-democracyUITests.release.xcconfig */,
+				A7DFD4B44240E6C5B356DC70 /* Pods-democracyUI-democracyUITests.debug.xcconfig */,
+				2D5FCB379F1BD6CAE761485A /* Pods-democracyUI-democracyUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -430,7 +434,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-democracyUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-democracyUI-democracyUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -586,7 +590,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8213ABE5C839EC17DF270EA /* Pods-democracyUITests.debug.xcconfig */;
+			baseConfigurationReference = A7DFD4B44240E6C5B356DC70 /* Pods-democracyUI-democracyUITests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
@@ -611,7 +615,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C6302D85D757CFAD818110BB /* Pods-democracyUITests.release.xcconfig */;
+			baseConfigurationReference = 2D5FCB379F1BD6CAE761485A /* Pods-democracyUI-democracyUITests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";

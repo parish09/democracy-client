@@ -29,7 +29,7 @@
     "postinstall": "yarn postinstall:android-fix"
   },
   "dependencies": {
-    "react-native": "0.61.4"
+    "react-native": "0.62.2"
   },
   "devDependencies": {
     "docz": "2.0.0-rc.67",
