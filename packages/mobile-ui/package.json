@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-native start --port 8088",
-    "ios": "react-native run-ios --port 8088",
+    "ios": "RCT_PACKAGER=8088 react-native run-ios --port 8088",
     "android": "react-native run-android --port 8088",
     "test": "jest -c jest.config.js",
     "test:watch": "yarn test --watch",
