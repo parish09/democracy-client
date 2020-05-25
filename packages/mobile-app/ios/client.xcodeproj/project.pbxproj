@@ -20,6 +20,8 @@
 		51D3D9DBDDC54DA29DAA51A7 /* libPods-clientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D15E8D7980434A138270732 /* libPods-clientTests.a */; };
 		7B305EA43801CA47E24897BB /* libPods-client-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 800B846E030BA5F3D2716867 /* libPods-client-tvOS.a */; };
 		C374DDF5622B4B45A4A53805 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E3003AE1E3714904AE002B63 /* libz.tbd */; };
+		C3F28AE6247C08B1007A6EAA /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F28AE5247C08B1007A6EAA /* CheckoutViewController.m */; };
+		C3F28AE9247C3075007A6EAA /* StripeBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F28AE8247C3075007A6EAA /* StripeBridge.m */; };
 		D8910E8C116A66280AEE4712 /* libPods-client-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93635B3EDA508CCA6C584E30 /* libPods-client-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +95,10 @@
 		AC508905CE66CED9AD6EFD7A /* Pods-client-tvOSTests.release.internal.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-tvOSTests.release.internal.xcconfig"; path = "Target Support Files/Pods-client-tvOSTests/Pods-client-tvOSTests.release.internal.xcconfig"; sourceTree = "<group>"; };
 		B11B71EBCB998E8B04E51A23 /* Pods-client-tvOSTests.alpha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-tvOSTests.alpha.release.xcconfig"; path = "Target Support Files/Pods-client-tvOSTests/Pods-client-tvOSTests.alpha.release.xcconfig"; sourceTree = "<group>"; };
 		C3E62E2E23D1A19E00EF5CA1 /* DEMOCRACY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = DEMOCRACY.entitlements; path = client/DEMOCRACY.entitlements; sourceTree = "<group>"; };
+		C3F28AE5247C08B1007A6EAA /* CheckoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
+		C3F28AE7247C0921007A6EAA /* CheckoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
+		C3F28AE8247C3075007A6EAA /* StripeBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripeBridge.m; sourceTree = "<group>"; };
+		C3F28AEA247C307C007A6EAA /* StripeBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripeBridge.h; sourceTree = "<group>"; };
 		C59B06D6F7200441822ACAC7 /* libPods-client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60E57A4C64E8D422333D24D /* Pods-clientTests.internal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clientTests.internal.debug.xcconfig"; path = "Target Support Files/Pods-clientTests/Pods-clientTests.internal.debug.xcconfig"; sourceTree = "<group>"; };
 		C7241A4CF22BBE3E966B280A /* Pods-client.internal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client.internal.debug.xcconfig"; path = "Target Support Files/Pods-client/Pods-client.internal.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,10 +179,14 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				C3F28AE7247C0921007A6EAA /* CheckoutViewController.h */,
+				C3F28AE5247C08B1007A6EAA /* CheckoutViewController.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				C3F28AEA247C307C007A6EAA /* StripeBridge.h */,
+				C3F28AE8247C3075007A6EAA /* StripeBridge.m */,
 			);
 			name = client;
 			sourceTree = "<group>";
@@ -315,6 +325,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				2770749D7231EC0BFF79871B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -465,6 +476,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\nexport EXTRA_PACKAGER_ARGS=\"--entry-file packages/mobile-app/index.js\"\n../../../node_modules/react-native/scripts/react-native-xcode.sh\n\n";
+		};
+		2770749D7231EC0BFF79871B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-client/Pods-client-resources.sh",
+				"${PODS_ROOT}/Stripe/InternalFrameworks/Stripe3DS2.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Stripe/Stripe.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe3DS2.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-client/Pods-client-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -622,7 +653,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				C3F28AE9247C3075007A6EAA /* StripeBridge.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				C3F28AE6247C08B1007A6EAA /* CheckoutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

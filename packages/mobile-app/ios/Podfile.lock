@@ -261,6 +261,7 @@ PODS:
   - Sentry (4.4.3):
     - Sentry/Core (= 4.4.3)
   - Sentry/Core (4.4.3)
+  - Stripe (17.0.3)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -311,12 +312,14 @@ DEPENDENCIES:
   - "RNSentry (from `../../../node_modules/@sentry/react-native`)"
   - RNSha256 (from `../../../node_modules/react-native-sha256`)
   - RNSVG (from `../../../node_modules/react-native-svg`)
+  - Stripe (~> 17)
   - Yoga (from `../../../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
     - boost-for-react-native
     - Sentry
+    - Stripe
 
 EXTERNAL SOURCES:
   BVLinearGradient:
@@ -457,8 +460,9 @@ SPEC CHECKSUMS:
   RNSha256: c6f68c850bf8315c95e2508667e8c908bd9f8487
   RNSVG: 67f1f12dae2cef6ed59a42cae74a6b8f5a9e7b46
   Sentry: 14bdd673870e8cf64932b149fad5bbbf39a9b390
+  Stripe: 30ba9a2ac7297e93de561fed695222ef980ee521
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 4e39ccaeb5dbb06c375a8633797aebefee6d8a63
+PODFILE CHECKSUM: 3e7af5bcd6789dcc4ca08a381462a3e2e31a7754
 
 COCOAPODS: 1.9.1

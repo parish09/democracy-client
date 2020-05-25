@@ -21,11 +21,13 @@ import { VerificationStart } from '../screens/modals/Verification/Start';
 import { PhoneNumber } from '../screens/modals/Verification/PhoneNumber';
 import { Code } from '../screens/modals/Verification/Code';
 import { SmsDonate } from '../screens/modals/Verification/Donate';
+import DonateNavigation from './Donate';
 
 export type RootStackParamList = {
   Sidebar: undefined;
   Home: {};
   Introduction: { done?: string; lastStartWithVersion?: string };
+  Donate: {};
   PushInstructions: {};
   Pdf: { url: string; title: string };
   NotificationInstruction: { done: () => void };
@@ -131,7 +133,13 @@ const Navigation = () => {
     <>
       <StatusBar barStyle="light-content" />
       <NavigationContainer
-        initialState={initialState}
+        initialState={{
+          routes: [
+            {
+              name: 'Donate',
+            },
+          ],
+        }}
         ref={rootNavigationRef}
         theme={{
           colors: {
@@ -161,6 +169,11 @@ const Navigation = () => {
           <RootStack.Screen
             name="Introduction"
             component={Introduction}
+            options={{ headerShown: false }}
+          />
+          <RootStack.Screen
+            name="Donate"
+            component={DonateNavigation}
             options={{ headerShown: false }}
           />
           <RootStack.Screen

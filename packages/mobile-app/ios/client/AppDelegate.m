@@ -20,6 +20,9 @@
 // Splash screen
 #import "RNSplashScreen.h"
 
+// Stripe
+#import <Stripe/Stripe.h>
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -43,6 +46,10 @@
   
   // react-native-notifications
   [RNNotifications startMonitorNotifications];
+  
+  // Stripe
+  self.rootViewController = rootViewController;
+  [Stripe setDefaultPublishableKey:@"pk_test_MuCBrTDEpP11nqu1Y7Xpjn7a004QBOdFlh"];
   
   return YES;
 }

@@ -34,6 +34,7 @@ import Folding from '@democracy-deutschland/mobile-ui/src/components/shared/Fold
 import { DONATION_STATUS } from './graphql/query/donationStatus';
 import { useQuery } from '@apollo/react-hooks';
 import { MadeWithLove } from '../../../components/MadeWithLove';
+import DonationButton from './DonationButton';
 
 const ScrollWrapper = styled.ScrollView.attrs({
   scrollIndicatorInsets: { right: 1 }, // TODO do cleanfix when there is a correct solution (already closed but not solved without workaround) https://github.com/facebook/react-native/issues/26610
@@ -174,6 +175,7 @@ export const DonateScreen: React.FC<Props> = () => {
       )}
       {Platform.OS === 'ios' ? (
         <Wrapper>
+          <DonationButton />
           <Text>
             {
               'Die verbleibende Seite steht unter iOS leider nicht zur Verfügung.\n'
