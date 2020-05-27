@@ -1,12 +1,12 @@
 import React, { useContext, FC, useEffect, useCallback } from 'react';
-import { Text, Platform, Share } from 'react-native';
+import { Text, Platform, Share, Alert } from 'react-native';
 import { RouteProp, CompositeNavigationProp } from '@react-navigation/core';
 import { BundestagRootStackParamList } from '../../../routes/Sidebar/Bundestag';
 
 import ShareIcon from '@democracy-deutschland/mobile-ui/src/components/Icons/Share';
 import ShareIconIosHeader from '@democracy-deutschland/mobile-ui/src/components/Icons/ShareIosHeader';
 
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import Folding from '@democracy-deutschland/mobile-ui/src/components/shared/Folding';
 import { ListLoading } from '@democracy-deutschland/mobile-ui/src/components/shared/ListLoading';
 import speakingurl from 'speakingurl';
@@ -33,12 +33,6 @@ import { styled } from '../../../styles';
 import { MenuButton } from '../../../components/MenuButton';
 import SvgBellFilledHeader from '@democracy-deutschland/mobile-ui/src/components/Icons/BellFilledHeader';
 import SvgBellHeader from '@democracy-deutschland/mobile-ui/src/components/Icons/BellHeader';
-import {
-  ToggleNotification,
-  ToggleNotificationVariables,
-} from './graphql/muatation/__generated__/ToggleNotification';
-import { TOGGLE_NOTIFICATION } from './graphql/muatation/toggleNotification';
-import { NotificationsContext } from '../../../context/NotificationPermission';
 import { RootStackParamList } from '../../../routes';
 
 const Container = styled.ScrollView.attrs({
@@ -78,9 +72,6 @@ type Props = {
 const ShareComponent = Platform.OS === 'ios' ? ShareIconIosHeader : ShareIcon;
 
 export const Procedure: FC<Props> = ({ route, navigation }) => {
-  const { notificationSettings, hasPermissions } = useContext(
-    NotificationsContext,
-  );
   const { isVerified } = useContext(InitialStateContext);
   const { constituency } = useContext(ConstituencyContext);
   const constituencies = constituency ? [constituency] : [];
@@ -116,86 +107,11 @@ export const Procedure: FC<Props> = ({ route, navigation }) => {
     );
   };
 
-  const [toggleNotification] = useMutation<
-    ToggleNotification,
-    ToggleNotificationVariables
-  >(TOGGLE_NOTIFICATION, {
-    variables: {
-      procedureId: route.params.procedureId,
-    },
-    refetchQueries: [
-      {
-        query: PROCEDURE,
-        variables: {
-          id: route.params.procedureId,
-        },
-      },
-    ],
-  });
-
   const clickBell = useCallback(() => {
-    if (
-      !notificationSettings.enabled ||
-      !notificationSettings.outcomePushs ||
-      !hasPermissions
-    ) {
-      navigation.navigate('NotificationInstruction', {
-        done: toggleNotification,
-      });
-    } else {
-      if (data) {
-        toggleNotification({
-          optimisticResponse: {
-            toggleNotification: {
-              __typename: 'Procedure',
-              notify: !data.procedure.notify,
-            },
-          },
-          update: (proxy, { data: mutationData }) => {
-            const procedureData = proxy.readQuery<
-              ProcedureQueryObj,
-              ProcedureVariables
-            >({
-              query: PROCEDURE,
-              variables: {
-                id: route.params.procedureId,
-                constituencies,
-              },
-            });
-            if (
-              procedureData &&
-              mutationData &&
-              mutationData.toggleNotification
-            ) {
-              proxy.writeQuery({
-                query: PROCEDURE,
-                variables: {
-                  id: route.params.procedureId,
-                  constituencies,
-                },
-                data: {
-                  ...procedureData,
-                  procedure: {
-                    ...procedureData.procedure,
-                    notify: mutationData.toggleNotification.notify,
-                  },
-                },
-              });
-            }
-          },
-        });
-      }
-    }
-  }, [
-    constituencies,
-    data,
-    hasPermissions,
-    navigation,
-    notificationSettings.enabled,
-    notificationSettings.outcomePushs,
-    route.params.procedureId,
-    toggleNotification,
-  ]);
+    Alert.alert(
+      'Benachrichtigungen werden derzeit leider nicht über FDroid unterstützt',
+    );
+  }, []);
 
   useEffect(() => {
     if (data) {
@@ -214,7 +130,7 @@ export const Procedure: FC<Props> = ({ route, navigation }) => {
         ),
       });
     }
-  }, [navigation, data, toggleNotification, clickBell]);
+  }, [navigation, data, clickBell]);
 
   useEffect(() => {
     if (!route.params.title && data && data.procedure.type) {

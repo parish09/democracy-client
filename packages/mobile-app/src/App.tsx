@@ -9,8 +9,6 @@ import { LocalVotesProvider } from './context/LocalVotes';
 import { Apollo } from './lib/Apollo';
 import { ListFilterProvider } from './context/ListFilter';
 import { ConstituencyProvider } from './context/Constituency';
-import { NotificationsProvider } from './context/NotificationPermission';
-import { PushNotificationProvider } from './context/PushNotification';
 import { theme, ThemeProvider } from './styles';
 import Navigation from './routes/index';
 import { VerificationProvider } from './context/Verification';
@@ -24,17 +22,13 @@ export default () => (
       <LocalVotesProvider>
         <ListFilterProvider>
           <ConstituencyProvider>
-            <NotificationsProvider>
-              <PushNotificationProvider>
-                <VerificationProvider>
-                  <NavigationProvider>
-                    <ThemeProvider theme={theme}>
-                      <Navigation />
-                    </ThemeProvider>
-                  </NavigationProvider>
-                </VerificationProvider>
-              </PushNotificationProvider>
-            </NotificationsProvider>
+            <VerificationProvider>
+              <NavigationProvider>
+                <ThemeProvider theme={theme}>
+                  <Navigation />
+                </ThemeProvider>
+              </NavigationProvider>
+            </VerificationProvider>
           </ConstituencyProvider>
         </ListFilterProvider>
       </LocalVotesProvider>

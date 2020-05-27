@@ -11,12 +11,9 @@ import { PdfScreen } from '../screens/modals/Pdf/Pdf';
 import { ConstituencyScreen } from '../screens/modals/Constituency';
 import { rootNavigationRef } from './rootNavigationRef';
 import { getNavInitStateForProcedure } from '../lib/getNavStateForProcedure';
-import { PushNotificationContext } from '../context/PushNotification';
 import SplashScreen from 'react-native-splash-screen';
 import { theme } from '../styles';
 import { StatusBar } from 'react-native';
-import { PushInstructions } from '../screens/modals/Introduction/PushInstructions';
-import { NotificationInstructionScreen } from '../screens/modals/NotificationInstruction';
 import { VerificationStart } from '../screens/modals/Verification/Start';
 import { PhoneNumber } from '../screens/modals/Verification/PhoneNumber';
 import { Code } from '../screens/modals/Verification/Code';
@@ -26,9 +23,7 @@ export type RootStackParamList = {
   Sidebar: undefined;
   Home: {};
   Introduction: { done?: string; lastStartWithVersion?: string };
-  PushInstructions: {};
   Pdf: { url: string; title: string };
-  NotificationInstruction: { done: () => void };
   Constituency: { goBack?: boolean };
   // Verification
   // Verification: { procedureId?: string };
@@ -41,7 +36,6 @@ export type RootStackParamList = {
 const RootStack = createStackNavigator<RootStackParamList>();
 
 const Navigation = () => {
-  const { initialNotification } = useContext(PushNotificationContext);
   const { getInitialState } = useLinking(rootNavigationRef, {
     prefixes: ['https://democracy-app.de', 'democracy://'],
     getStateFromPath: path => {
@@ -53,7 +47,6 @@ const Navigation = () => {
   });
 
   const [isInitialReady, setIsInitialReady] = React.useState(false);
-  const [isPushReady, setIsPushReady] = React.useState(false);
   const [isIntroductionReady, setIsIntroductionReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState<InitialState>();
 
@@ -104,24 +97,10 @@ const Navigation = () => {
     }
   }, [currentVersion, lastStartWithVersion, setLastStartWithVersion]);
 
-  // call if app opened by push notification
-  useEffect(() => {
-    if (initialNotification) {
-      setInitialState(
-        getNavInitStateForProcedure({
-          procedureId: initialNotification.procedureId,
-        }),
-      );
-    }
-    setIsPushReady(true);
-  }, [initialNotification]);
-
   if (
     lastStartWithVersion === undefined ||
     currentVersion === undefined ||
-    initialNotification === undefined ||
     !isInitialReady ||
-    !isPushReady ||
     !isIntroductionReady
   ) {
     return null;
@@ -169,23 +148,11 @@ const Navigation = () => {
             options={({ route }) => ({ title: route.params.title })}
           />
           <RootStack.Screen
-            name="NotificationInstruction"
-            component={NotificationInstructionScreen}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Screen
             name="Constituency"
             component={ConstituencyScreen}
             options={{
               title: 'Wahlkreissuche',
             }}
-          />
-          <RootStack.Screen
-            name="PushInstructions"
-            options={{
-              headerShown: false,
-            }}
-            component={PushInstructions}
           />
           {/* Verification */}
           <RootStack.Screen

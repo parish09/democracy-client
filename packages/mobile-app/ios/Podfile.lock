@@ -188,8 +188,6 @@ PODS:
   - React-jsinspector (0.61.5)
   - react-native-config (0.12.0):
     - React
-  - react-native-notifications (3.1.4):
-    - React
   - react-native-pdf (6.1.2):
     - React
   - react-native-safe-area-context (0.7.3):
@@ -283,7 +281,6 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../../../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../../../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-config (from `../../../node_modules/react-native-config`)
-  - react-native-notifications (from `../../../node_modules/react-native-notifications`)
   - react-native-pdf (from `../../../node_modules/react-native-pdf`)
   - react-native-safe-area-context (from `../../../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../../../node_modules/react-native-splash-screen`)
@@ -353,8 +350,6 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/react-native/ReactCommon/jsinspector"
   react-native-config:
     :path: "../../../node_modules/react-native-config"
-  react-native-notifications:
-    :path: "../../../node_modules/react-native-notifications"
   react-native-pdf:
     :path: "../../../node_modules/react-native-pdf"
   react-native-safe-area-context:
@@ -429,7 +424,6 @@ SPEC CHECKSUMS:
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-config: f2c2ae45625a068c35681a16b9bfb1ca58b0adc7
-  react-native-notifications: 36929512507417ba0021659bd2f9e0184dda2489
   react-native-pdf: 7d76a6619f76a6ebfb2f82a4f2feeb17826ba8b4
   react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865

@@ -10,9 +10,6 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-// react-native-notifications
-import com.wix.reactnativenotifications.RNNotificationsPackage;
-
 public class MainApplication extends MultiDexApplication implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -28,9 +25,6 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
-
-          // react-native-notifications
-          packages.add(new RNNotificationsPackage(MainApplication.this));
           
           return packages;
         }

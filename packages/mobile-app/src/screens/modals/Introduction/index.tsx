@@ -11,8 +11,6 @@ import { Pager } from '@democracy-deutschland/mobile-ui/src/components/Pager';
 import { getSlides } from './utils/getSlides';
 import { InitialStateContext } from '../../../context/InitialStates';
 import { getVersion } from 'react-native-device-info';
-import { PushInstructions } from './PushInstructions';
-import { NotificationsContext } from '../../../context/NotificationPermission';
 
 const SafeAreaView = styled.SafeAreaView`
   flex: 1;
@@ -32,9 +30,6 @@ const Introduction: FC<Props> = ({ route }) => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const { isVerified, setLastStartWithVersion } = useContext(
     InitialStateContext,
-  );
-  const { notificationSettings, hasPermissions } = useContext(
-    NotificationsContext,
   );
   let { lastStartWithVersion, done } = {
     lastStartWithVersion: '',
@@ -69,16 +64,6 @@ const Introduction: FC<Props> = ({ route }) => {
       }
     />
   ));
-
-  if (
-    !notificationSettings.outcomePushs ||
-    !notificationSettings.enabled ||
-    !hasPermissions
-  ) {
-    slideScreens.push(
-      <PushInstructions key="push-instructions" finishAction={finishAction} />,
-    );
-  }
 
   if (slideScreens.length === 0) {
     setLastStartWithVersion(getVersion());

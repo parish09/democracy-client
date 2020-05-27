@@ -11,19 +11,7 @@ import { VoteSelection } from '../../../../__generated__/globalTypes';
 import { LocalVotesContext } from '../../../context/LocalVotes';
 import { SidebarParamList } from '../../../routes/Sidebar';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
-import { useMutation } from '@apollo/react-hooks';
 import Lock from '@democracy-deutschland/mobile-ui/src/components/Icons/Lock';
-import {
-  ToggleNotification,
-  ToggleNotificationVariables,
-} from './graphql/muatation/__generated__/ToggleNotification';
-import { TOGGLE_NOTIFICATION } from './graphql/muatation/toggleNotification';
-import { PROCEDURE } from './graphql/query/Procedure';
-import {
-  Procedure as ProcedureQuery,
-  ProcedureVariables,
-} from './graphql/query/__generated__/Procedure';
-import { ConstituencyContext } from '../../../context/Constituency';
 import { NavigationContext } from '../../../context/Navigation';
 import { RootStackParamList } from '../../../routes';
 
@@ -133,26 +121,9 @@ const PrepareActions: React.FC<Props> = ({
   share,
   // active,
 }) => {
-  const { constituency } = useContext(ConstituencyContext);
   const { saveState } = useContext(NavigationContext);
-  const constituencies = constituency ? [constituency] : [];
   const { getLocalVoteSelection } = useContext(LocalVotesContext);
-  const [toggleNotification] = useMutation<
-    ToggleNotification,
-    ToggleNotificationVariables
-  >(TOGGLE_NOTIFICATION, {
-    variables: {
-      procedureId,
-    },
-    refetchQueries: [
-      {
-        query: PROCEDURE,
-        variables: {
-          id: procedureId,
-        },
-      },
-    ],
-  });
+
   const navigation = useNavigation<DetailScreenNavigationProps>();
 
   const showUnknownVoteNotification = () => {
@@ -253,48 +224,11 @@ const PrepareActions: React.FC<Props> = ({
             <ActionButton
               selection="NOTIFY"
               notify={notify}
-              onPress={() =>
-                toggleNotification({
-                  optimisticResponse: {
-                    toggleNotification: {
-                      __typename: 'Procedure',
-                      notify: !notify,
-                    },
-                  },
-                  update: (proxy, { data: mutationData }) => {
-                    const data = proxy.readQuery<
-                      ProcedureQuery,
-                      ProcedureVariables
-                    >({
-                      query: PROCEDURE,
-                      variables: {
-                        id: procedureId,
-                        constituencies,
-                      },
-                    });
-                    if (
-                      data &&
-                      mutationData &&
-                      mutationData.toggleNotification
-                    ) {
-                      proxy.writeQuery({
-                        query: PROCEDURE,
-                        variables: {
-                          id: procedureId,
-                          constituencies,
-                        },
-                        data: {
-                          ...data,
-                          procedure: {
-                            ...data.procedure,
-                            notify: mutationData.toggleNotification.notify,
-                          },
-                        },
-                      });
-                    }
-                  },
-                })
-              }
+              onPress={() => {
+                Alert.alert(
+                  'Benachrichtigungen werden derzeit nicht über FDroid unterstützt.',
+                );
+              }}
             />
             <VoteButtonLabel>
               {notify ? 'Stumm schalten' : 'Benachrichtigen'}

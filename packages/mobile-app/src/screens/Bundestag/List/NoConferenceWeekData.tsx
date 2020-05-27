@@ -1,15 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components/native';
-import { Button } from 'react-native';
 import { useQuery } from '@apollo/react-hooks';
 import { CURRENT_CONFERENCE_WEEK } from './graphql/query/currentConferenceWeek';
 import { CurrentConferenceWeek } from './graphql/query/__generated__/CurrentConferenceWeek';
 import dateFormat from 'dateformat';
 import SvgConferenceWeekPlaceholder from '@democracy-deutschland/mobile-ui/src/components/Icons/ConferenceWeekPlaceholder';
 import { Space } from '../../modals/Verification/Start';
-
-import { useNavigation } from '@react-navigation/core';
-import { NotificationsContext } from '../../../context/NotificationPermission';
 
 const Container = styled.ScrollView.attrs({
   flex: 1,
@@ -38,8 +34,6 @@ const IconWrapper = styled.View`
 
 export const NoConferenceWeekData = () => {
   const { data } = useQuery<CurrentConferenceWeek>(CURRENT_CONFERENCE_WEEK);
-  const navigation = useNavigation();
-  const { notificationSettings } = useContext(NotificationsContext);
   return (
     <Container testID={'NoConferenceWeekData'}>
       <IconWrapper>
@@ -58,14 +52,6 @@ export const NoConferenceWeekData = () => {
           {`)
 statt.`}
         </TextGrey>
-      )}
-
-      {(!notificationSettings.enabled ||
-        !notificationSettings.conferenceWeekPushs) && (
-        <Button
-          title="Benachrichtigen"
-          onPress={() => navigation.navigate('PushInstructions')}
-        />
       )}
     </Container>
   );

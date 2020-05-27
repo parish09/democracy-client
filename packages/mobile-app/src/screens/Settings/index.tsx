@@ -1,5 +1,5 @@
 import React, { useContext, ReactNode } from 'react';
-import { SectionList, Switch, Button, Linking, Alert } from 'react-native';
+import { SectionList } from 'react-native';
 
 // GraphQL
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -9,8 +9,6 @@ import { InitialStateContext } from '../../context/InitialStates';
 import { Segment } from '../Bundestag/List/Components/Segment';
 import { ListItem } from './components/ListItem';
 import { useNavigation } from '@react-navigation/core';
-import { getBundleId } from 'react-native-device-info';
-import { NotificationsContext } from '../../context/NotificationPermission';
 import { styled } from '../../styles';
 import { NavigationContext } from '../../context/Navigation';
 
@@ -53,13 +51,6 @@ export const Settings: React.FC<Props> = () => {
   const { constituency } = useContext(ConstituencyContext);
   const { isVerified } = useContext(InitialStateContext);
   const { saveState } = useContext(NavigationContext);
-  const {
-    hasPermissions,
-    alreadyDenied,
-    notificationSettings,
-    update: updateNotificationSettings,
-    requestToken,
-  } = useContext(NotificationsContext);
 
   const navigateTo = (screen: string) => () => {
     switch (screen) {
@@ -73,31 +64,6 @@ export const Settings: React.FC<Props> = () => {
 
       default:
         break;
-    }
-  };
-
-  const handleActivate = () => {
-    if (!alreadyDenied) {
-      requestToken();
-    } else {
-      Alert.alert(
-        'Benachrichtigungen',
-        'Bitte Mitteilungen in den Einstellungen aktivieren.',
-        [
-          {
-            text: 'Aktivieren',
-            onPress: () =>
-              Linking.openURL(`app-settings://notification/${getBundleId}`),
-          },
-          {
-            text: 'Später',
-            style: 'cancel',
-          },
-        ],
-        {
-          cancelable: true,
-        },
-      );
     }
   };
 
@@ -127,114 +93,6 @@ export const Settings: React.FC<Props> = () => {
       ],
     },
   ];
-
-  listData[0].data.push({
-    title: 'Benachrichtigungen',
-    onPress: navigateTo('notifications-settings'),
-    component: hasPermissions ? (
-      <Switch
-        value={!!notificationSettings.enabled}
-        onValueChange={value => {
-          updateNotificationSettings({
-            enabled: value,
-          });
-        }}
-      />
-    ) : (
-      <Button title="Aktivieren" onPress={handleActivate} />
-    ),
-  });
-
-  if (hasPermissions && notificationSettings.enabled) {
-    listData.push(
-      {
-        title: 'Individuelle Benachrichtungen',
-        data: [
-          {
-            title: 'Bundestagsergebnisse',
-            onPress: navigateTo('notifications-settings'),
-            component: (
-              <Switch
-                value={!!notificationSettings.outcomePushs}
-                onValueChange={value => {
-                  updateNotificationSettings({
-                    outcomePushs: value,
-                  });
-                }}
-              />
-            ),
-            description: isVerified
-              ? 'Werde nach Deiner Abstimmung standardmäßig über das offizielle Ergebnis des Bundestages informiert, sobald dieses vorliegt.'
-              : 'Werde über das offizielle Ergebnis des Bundestages informiert, sobald dieses vorliegt.',
-          },
-        ],
-      },
-      {
-        title: 'Sitzungswoche',
-        data: [
-          {
-            title: 'Ankündigung',
-            onPress: navigateTo('notifications-settings'),
-            component: (
-              <Switch
-                value={!!notificationSettings.conferenceWeekPushs}
-                onValueChange={value => {
-                  updateNotificationSettings({
-                    conferenceWeekPushs: value,
-                  });
-                }}
-              />
-            ),
-            description:
-              'Werde Sonntags vor einer Sitzungswoche über die kommenden Abstimmungen informiert.',
-          },
-        ],
-      },
-    );
-  }
-
-  if (isVerified && notificationSettings.enabled) {
-    const tmp = listData.find(({ title }) => title === 'Sitzungswoche');
-    if (tmp) {
-      tmp.data.push({
-        title: 'Wichtige Abstimmungen',
-        onPress: navigateTo('notifications-settings'),
-        component: (
-          <Switch
-            value={!!notificationSettings.voteConferenceWeekPushs}
-            onValueChange={value => {
-              updateNotificationSettings({
-                voteConferenceWeekPushs: value,
-              });
-            }}
-          />
-        ),
-        description:
-          'Werde täglich während einer laufenden Sitzungswoche, über eine populäre Abstimmung informiert.',
-      });
-    }
-    listData.push({
-      title: 'Sitzungsfreie Zeit',
-      data: [
-        {
-          title: 'Populäre Abstimmungen',
-          onPress: navigateTo('notifications-settings'),
-          component: (
-            <Switch
-              value={!!notificationSettings.voteTOP100Pushs}
-              onValueChange={value => {
-                updateNotificationSettings({
-                  voteTOP100Pushs: value,
-                });
-              }}
-            />
-          ),
-          description:
-            'Challenge? Werde auch in der sitzungsfreien Zeit täglich über eine Abstimmung informiert, bei der Du noch nicht mitgemacht hast.',
-        },
-      ],
-    });
-  }
 
   return (
     <Wrapper>
