@@ -3,29 +3,29 @@ import styled from 'styled-components/native';
 import unionBy from 'lodash.unionby';
 
 // Components
-import NoVotesPlaceholder from './NoVotesPlaceholder';
+import NoVotesPlaceholder from './../NoVotesPlaceholder';
 
 // GraphQL
 import { FlatList } from 'react-native';
 import { ListLoading } from '@democracy-deutschland/mobile-ui/src/components/shared/ListLoading';
 import { ListItem } from '@democracy-deutschland/mobile-ui/src/components/Lists/ListItem';
 import { Row } from '@democracy-deutschland/mobile-ui/src/components/Lists/Row';
-import { LocalVotesContext } from '../../context/LocalVotes';
+import { LocalVotesContext } from '../../../context/LocalVotes';
 import { useQuery } from '@apollo/react-hooks';
-import { pieChartGovernmentData } from '../../lib/helper/PieChartGovernmentData';
-import { communityVoteData } from '../../lib/helper/PieChartCommunityData';
-import { ChainEntry } from '../../lib/VotesLocal';
-import { VOTED_PROCEDURES } from './graphql/queries/proceduresByIdHavingVoteResults';
-import {
-  VotedProcedures,
-  VotedProceduresVariables,
-  VotedProcedures_proceduresByIdHavingVoteResults_procedures,
-} from './graphql/queries/__generated__/VotedProcedures';
+import { communityVoteData } from '../../../lib/helper/PieChartCommunityData';
+import { ChainEntry } from '../../../lib/VotesLocal';
 import {
   PartyChartData,
   PartyChartDataVariables,
-} from '../Bundestag/Procedure/Voting/components/graphql/query/__generated__/PartyChartData';
-import { PARTY_CHART_DATA } from '../Bundestag/Procedure/Voting/components/graphql/query/proceduresByIdHavingVoteResults';
+} from '../../Bundestag/Procedure/Voting/components/graphql/query/__generated__/PartyChartData';
+import { PARTY_CHART_DATA } from '../../Bundestag/Procedure/Voting/components/graphql/query/proceduresByIdHavingVoteResults';
+import { pieChartPartyData } from '../../../lib/helper/PieChartPartyData';
+import { VOTED_PARTY_PROCEDURES } from './graphql/queries/proceduresByIdHavingVoteResults';
+import {
+  VotedPartyProceduresVariables,
+  VotedPartyProcedures,
+  VotedPartyProcedures_proceduresByIdHavingVoteResults_procedures,
+} from './graphql/queries/__generated__/VotedPartyProcedures';
 
 const Container = styled.View`
   background-color: #fff;
@@ -40,17 +40,19 @@ interface ChildProps {
   chartData: ChartData;
 }
 interface Props {
+  party?: string;
   onProcedureListItemClick: ({
     item,
   }: {
-    item: VotedProcedures_proceduresByIdHavingVoteResults_procedures;
+    item: VotedPartyProcedures_proceduresByIdHavingVoteResults_procedures;
   }) => void;
   children: JSX.Element | ((props: ChildProps) => ReactElement);
 }
 
-const VotedProceduresWrapper: React.FC<Props> = ({
+const VotedPartyProceduresWrapper: React.FC<Props> = ({
   onProcedureListItemClick,
   children,
+  party,
 }) => {
   const { localVotes, getLocalVoteSelection } = useContext(LocalVotesContext);
   const { data: proceduresData } = useQuery<
@@ -64,9 +66,9 @@ const VotedProceduresWrapper: React.FC<Props> = ({
   });
 
   const { data: procedurListData, fetchMore, networkStatus } = useQuery<
-    VotedProcedures,
-    VotedProceduresVariables
-  >(VOTED_PROCEDURES, {
+    VotedPartyProcedures,
+    VotedPartyProceduresVariables
+  >(VOTED_PARTY_PROCEDURES, {
     variables: { offset: 0 },
   });
 
@@ -90,7 +92,8 @@ const VotedProceduresWrapper: React.FC<Props> = ({
   return (
     <Container>
       <FlatList<
-        'chart' | VotedProcedures_proceduresByIdHavingVoteResults_procedures
+        | 'chart'
+        | VotedPartyProcedures_proceduresByIdHavingVoteResults_procedures
       >
         data={['chart', ...listData]}
         renderItem={({ item }) => {
@@ -118,12 +121,14 @@ const VotedProceduresWrapper: React.FC<Props> = ({
                 }
                 votes={item.communityVotes ? item.communityVotes.total || 0 : 0}
                 govermentChart={{
-                  votes: pieChartGovernmentData({
-                    ...item,
-                    largeDecision: item.voteResults
-                      ? item.voteResults.governmentDecision
-                      : undefined,
-                  }),
+                  votes: party
+                    ? pieChartPartyData({
+                        ...item,
+                        votedGovernment: item.votedGovernment,
+                        partyVotes: item.voteResults?.partyVotes,
+                        selectedParty: party,
+                      })
+                    : undefined,
                 }}
                 communityVotes={communityVoteData({
                   ...item,
@@ -177,4 +182,4 @@ const VotedProceduresWrapper: React.FC<Props> = ({
   );
 };
 
-export default VotedProceduresWrapper;
+export default VotedPartyProceduresWrapper;
